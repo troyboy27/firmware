@@ -132,6 +132,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Disable the welcome screen and allow
 // #define DISABLE_WELCOME_UNSET
 
+// Define for Wio SX1262 board
+#ifdef WIO_SX1262
+#define HAS_BUTTON 1
+#define HAS_SCREEN 0
+#define HAS_GPS 0
+#endif
+
 // -----------------------------------------------------------------------------
 // OLED & Input
 // -----------------------------------------------------------------------------

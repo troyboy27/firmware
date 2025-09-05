@@ -102,6 +102,7 @@
 #if !MESHTASTIC_EXCLUDE_DROPZONE
 #include "modules/DropzoneModule.h"
 #endif
+#include "modules/HelpLedModule.h"
 
 /**
  * Create module instances here.  If you are adding a new module, you must 'new' it here (or somewhere else)
@@ -273,6 +274,8 @@ void setupModules()
 #if !MESHTASTIC_EXCLUDE_RANGETEST && !MESHTASTIC_EXCLUDE_GPS
         new RangeTestModule();
 #endif
+        // Help LED Module - turns on LED when "help" message is received
+        helpLedModule = new HelpLedModule();
     } else {
 #if !MESHTASTIC_EXCLUDE_ADMIN
         adminModule = new AdminModule();

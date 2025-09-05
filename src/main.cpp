@@ -28,6 +28,11 @@
 #endif
 #include "detect/einkScan.h"
 #include "graphics/RAKled.h"
+#include <FastLED.h>
+
+// LED declarations for FastLED
+#define NUM_LEDS 1
+CRGB leds[NUM_LEDS];
 #include "graphics/Screen.h"
 #include "main.h"
 #include "mesh/generated/meshtastic/config.pb.h"
@@ -958,6 +963,16 @@ void setup()
 
     // Now that the mesh service is created, create any modules
     setupModules();
+
+#ifdef WIO_SX1262
+    // Initialize FastLED for Wio SX1262
+    FastLED.addLeds<WS2812, 48, GRB>(leds, NUM_LEDS);
+    FastLED.setBrightness(50);
+    
+    // Turn off the LED initially
+    leds[0] = CRGB::Black;
+    FastLED.show();
+#endif
 
     // warn the user about a low entropy key
     if (nodeDB->keyIsLowEntropy && !nodeDB->hasWarned) {
